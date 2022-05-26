@@ -178,3 +178,39 @@ footer {
   text-align: center;
   margin: 2em;
 }
+
+@media (min-width: 900px) {
+  :root {
+    font-size: 20px;
+  }
+  main > section {
+    display: flex;
+    align-items: center;
+  }
+  .hero img {
+    width: 50%;
+    margin-bottom: 0;
+  }
+  .hero .body {
+    padding: 0 10%;
+    text-align: left;
+    flex-grow: 1;
+  }
+  .hero .body > * {
+    margin-left: 0;
+  }
+  .hero.textonly {
+    text-align: center;
+    display: block;
+  }
+  .cards {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin: 2em 0;
+  }
+  .card {
+    margin: 1em;
+    flex: 1 1 300px;
+  }
+}
