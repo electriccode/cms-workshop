@@ -113,21 +113,21 @@ export default function Home() {
             width="100%"
             alt=""
           />
-          <h1>Save up to 90% off textbooks3</h1>
+          <h2 className="h2">Save up to 90% off textbooks3</h2>
           <p>The smartest way to rent or buy textbooks. Period.</p>
           <a className="button" href="https://www.chegg.com/books">
             Find your books
           </a>
         </section>
         <section className="hero">
-          <h1>Study time, crunch time, anytime</h1>
+          <h1 className="h2">Study time, crunch time, anytime</h1>
           <p>
             Explore some of our best study tools & get 24/7 support for your
             assignments
           </p>
         </section>
         <section className="cards">
-          <div className="card">
+          <div className="card rounded">
             <img
               src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_600/site-assets/marketing/landing-pages/Study/optimized-V4.1/card-test-prep-xl.png"
               alt=""
@@ -140,7 +140,7 @@ export default function Home() {
               Learn more <img src="/arrow.svg" alt="" />
             </a>
           </div>
-          <div className="card">
+          <div className="card rounded">
             <img
               src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_600/site-assets/marketing/landing-pages/Study/optimized-V4.1/card-snap-a-pic-xl.png"
               alt=""
@@ -154,7 +154,7 @@ export default function Home() {
               Learn more <img src="/arrow.svg" alt="" />
             </a>
           </div>
-          <div className="card">
+          <div className="card rounded">
             <img
               src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_600/site-assets/marketing/landing-pages/Study/optimized-V4.1/card-feedback-xl.png"
               alt=""
@@ -173,24 +173,26 @@ export default function Home() {
           </div>
         </section>
         <section className="cards">
-          <div className="card">
+          <div className="card noborder rounded">
             <img
+              className="rounded"
               src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_1000/site-assets/marketing/landing-pages/Cheggcom/panel-careers-m.jpg"
               alt=""
             />
-            <h3>Make your dream job a reality</h3>
+            <h3 className="h2">Make your dream job a reality</h3>
             <p>Grow your skills and find opportunities.</p>
             <a className="cta" href="https://www.chegg.com/career">
               Explore Careers & Internships
               <img src="/arrow.svg" alt="" />
             </a>
           </div>
-          <div className="card">
+          <div className="card noborder rounded">
             <img
+              className="rounded"
               src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_1000/site-assets/marketing/landing-pages/Cheggcom/panel-life-m.jpg"
               alt=""
             />
-            <h3>Balance more than just classes</h3>
+            <h3 className="h2">Balance more than just classes</h3>
             <p>Navigate life and money matters.</p>
             <a
               className="cta"

@@ -111,6 +111,7 @@ section a.cta > img {
 
 .hero img {
   margin-bottom: 2.5em;
+  display: block;
 }
 
 .hero .overline {
@@ -149,12 +150,31 @@ section a.cta > img {
 .card {
   border: 1px solid #000;
   margin: 1em 0;
+  padding-bottom: 1em;
+}
+
+.rounded {
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+.card.noborder {
+  border-width: 0;
 }
 
 .card img {
   max-width: 100%;
 }
 
+.card > img:first-of-type {
+  margin: 0;
+}
+
 .card > * {
-  margin: 0.5em 0;
+  margin: 0.5em 1em;
+}
+
+footer {
+  text-align: center;
+  margin: 2em;
 }
