@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+// import '../styles/Home.module.css';
 
 export default function Home() {
   return (
@@ -12,15 +12,21 @@ export default function Home() {
           <a href="https://www.chegg.com/">
             <img src="/logo.svg" alt="" width="80" />
           </a>
+          <nav>
+            <a href="https://www.chegg.com/books">Books</a>
+            <a href="https://www.chegg.com/study">Study</a>
+            <a href="https://www.chegg.com/career">Career</a>
+            <a href="https://www.chegg.com/introducing-chegg-life">Life</a>
+          </nav>
         </header>
-        <section className="hero">
+        <section className="hero bleed">
           <img
             src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_1200/site-assets/marketing/landing-pages/Cheggcom/optimized/full-hero-sohp-s.jpg"
             width="100%"
             alt=""
           />
           <div className="overline">24/7 COURSE HELP</div>
-          <h1>Learn with Chegg</h1>
+          <h1 className="h2">Learn with Chegg</h1>
           <p>
             From first day to finals, get homework help, exam prep & writing
             support—tailored to your courses.
@@ -32,19 +38,19 @@ export default function Home() {
             Get started
           </a>
         </section>
-        <h2>Here for every moment</h2>
         <section className="cards">
+          <h2 className="h2">Here for every moment</h2>
           <div className="card">
             <img
               src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_600/site-assets/marketing/landing-pages/Study/tile-hw.png"
               alt=""
             />
-            <h3>Homework help</h3>
+            <h3 className="h2">Homework help</h3>
             <p>
               Study with 55+ million step-by-step explanations, Expert Q&As &
               math support.
             </p>
-            <a href="https://www.chegg.com/homework-help">
+            <a className="cta" href="https://www.chegg.com/homework-help">
               Learn more <img src="/arrow.svg" alt="" />
             </a>
           </div>
@@ -53,12 +59,12 @@ export default function Home() {
               src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_600/site-assets/marketing/landing-pages/Study/tile-exam-m.png"
               alt=""
             />
-            <h3>Exam prep & practice</h3>
+            <h3 className="h2">Exam prep & practice</h3>
             <p>
               Figure out what you don’t know & get ready for test day with
               practice exams.1
             </p>
-            <a href="https://www.chegg.com/prep-for-an-exam">
+            <a className="cta" href="https://www.chegg.com/prep-for-an-exam">
               Learn more <img src="/arrow.svg" alt="" />
             </a>
           </div>
@@ -67,12 +73,12 @@ export default function Home() {
               src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_600/site-assets/marketing/landing-pages/Study/tile-topics-m.png"
               alt=""
             />
-            <h3>Understand a topic</h3>
+            <h3 className="h2">Understand a topic</h3>
             <p>
               Simplify the toughest concepts with digestible topic breakdowns &
               videos.
             </p>
-            <a href="https://www.chegg.com/understand-a-topic">
+            <a className="cta" href="https://www.chegg.com/understand-a-topic">
               Learn more <img src="/arrow.svg" alt="" />
             </a>
           </div>
@@ -81,23 +87,23 @@ export default function Home() {
               src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_600/site-assets/marketing/landing-pages/Study/tile-writing-m.png"
               alt=""
             />
-            <h3>Writing & citations</h3>
+            <h3 className="h2">Writing & citations</h3>
             <p>
               Strengthen your writing with plagiarism checks, expert
               proofreading & instant citations.
             </p>
-            <a href="https://www.chegg.com/writing">
+            <a className="cta" href="https://www.chegg.com/writing">
               Learn more <img src="/arrow.svg" alt="" />
             </a>
           </div>
         </section>
         <section className="pricing">
-          <p>Prices starting at USD $6.79/mo., cancel anytime</p>
+          <p className="h6">Prices starting at USD $6.79/mo., cancel anytime</p>
           <a href="https://www.chegg.com/auth?redirect=%2Fcspofferinterstitial%2Fib%3FproductType%3DCHEGG_STUDY%26checkoutFlowType%3DSINGLE_ITEM_PURCHASE%26data%3DeyJpdGVtcyI6W3siY2F0YWxvZ0l0ZW1JZCI6IjkxNDYiLCJwcmljaW5nSWQiOiI5N2I1MjE2Yy0yZGQwLTM4YzAtYjI2MS1mYjViMDFhNjBmZGEiLCJxdWFudGl0eSI6MSwiY2F0YWxvZ0l0ZW1Tb3VyY2UiOiJORVRTVUlURSIsImFubm90YXRpb25zIjp7fX1dLCJob3N0QW5ub3RhdGlvbnMiOnt9LCJzdWNjZXNzVXJsIjoiLyIsImVycm9yVXJsIjoiLyJ9%26originalSource%3DCONTENTFUL&action=signup&type=simplifiedstudy">
             Sign up
           </a>
         </section>
-        <h2>
+        <h2 className="h2">
           94% of Chegg customers say they get better grades when they use Chegg
           to understand their coursework2
         </h2>
@@ -130,7 +136,7 @@ export default function Home() {
             <p>
               Check your knowledge with practice problems, quizzes, and more.1
             </p>
-            <a href="https://www.chegg.com/prep-for-an-exam">
+            <a className="cta" href="https://www.chegg.com/prep-for-an-exam">
               Learn more <img src="/arrow.svg" alt="" />
             </a>
           </div>
@@ -144,7 +150,7 @@ export default function Home() {
               Have millions of explanations at your fingertips. Plus, snap a pic
               to get an expert answer.
             </p>
-            <a href="https://www.chegg.com/study/qa">
+            <a className="cta" href="https://www.chegg.com/study/qa">
               Learn more <img src="/arrow.svg" alt="" />
             </a>
           </div>
@@ -158,7 +164,10 @@ export default function Home() {
               Receive detailed comments from real writing experts on your
               assignment’s thesis, style, and more—within 48 hours.
             </p>
-            <a href="https://www.chegg.com/writing/features/proofreading">
+            <a
+              className="cta"
+              href="https://www.chegg.com/writing/features/proofreading"
+            >
               Learn more <img src="/arrow.svg" alt="" />
             </a>
           </div>
@@ -171,7 +180,7 @@ export default function Home() {
             />
             <h3>Make your dream job a reality</h3>
             <p>Grow your skills and find opportunities.</p>
-            <a href="https://www.chegg.com/career">
+            <a className="cta" href="https://www.chegg.com/career">
               Explore Careers & Internships
               <img src="/arrow.svg" alt="" />
             </a>
@@ -183,7 +192,10 @@ export default function Home() {
             />
             <h3>Balance more than just classes</h3>
             <p>Navigate life and money matters.</p>
-            <a href="https://www.chegg.com/introducing-chegg-life">
+            <a
+              className="cta"
+              href="https://www.chegg.com/introducing-chegg-life"
+            >
               Explore Life <img src="/arrow.svg" alt="" />
             </a>
           </div>
