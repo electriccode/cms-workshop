@@ -211,3 +211,37 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps = async (context) => {
+  const results = {
+    props: {},
+  };
+  const gql = `query {
+      pageCollection(where: {
+        slug_exists: false
+      }){
+      items {
+        title
+      }
+    }
+  }`;
+  try {
+    const data = await fetch(
+      'https://graphql.contentful.com/content/v1/spaces/057tm1592ba8/environments/master',
+      {
+        headers: {
+          authorization: 'Bearer FK64gTSrqOKPrlAEO9WEImebL4QobEZSSpGVzNXizw0',
+          'content-type': 'application/json',
+        },
+        body: '{"operationName":null,"variables":{},"query":"{  pageCollection(where: {slug_exists: false}) {    items {      title    }  }}"}',
+        method: 'POST',
+      }
+    );
+    results.props = await data.json();
+    console.log(results.props);
+  } catch (e) {
+    console.trace(e);
+  }
+
+  return results;
+};
