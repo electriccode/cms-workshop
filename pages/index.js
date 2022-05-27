@@ -1,9 +1,39 @@
 import Head from 'next/head';
 import Header from '../src/components/Header';
+import Hero from '../src/components/Hero';
 
 export default function Home(props) {
   console.log(props);
   const page = props.data.pageCollection.items[0];
+  const components = page.componentsCollection.items.map((componentData) => {
+    const { __typename } = componentData;
+    let props = {};
+    let Component = null;
+    switch (__typename) {
+      case 'ValueProp':
+        Component = Hero;
+        const {
+          title,
+          image: { url },
+          overline,
+          cta: {
+            text,
+            url: { url: ctaUrl },
+          },
+        } = componentData;
+        props = {
+          title,
+          overline,
+          imageUrl: url,
+          cta: {
+            text,
+            url: ctaUrl,
+          },
+        };
+        break;
+    }
+    return Component && <Component {...props} />;
+  });
   return (
     <div>
       <Head>
@@ -11,6 +41,7 @@ export default function Home(props) {
       </Head>
       <main>
         <Header />
+        {components}
         <section className="hero bleed">
           <img
             src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_1200/site-assets/marketing/landing-pages/Cheggcom/optimized/full-hero-sohp-s.jpg"
@@ -225,7 +256,7 @@ export const getServerSideProps = async (context) => {
           authorization: 'Bearer FK64gTSrqOKPrlAEO9WEImebL4QobEZSSpGVzNXizw0',
           'content-type': 'application/json',
         },
-        body: '{"operationName":null,"variables":{},"query":"{  pageCollection(where: {slug_exists: false}) {    items {      title    }  }}"}',
+        body: `{"operationName":null,"variables":{},"query":" { pageCollection(where: { slug_exists: false, }, limit: 1){ items { title componentsCollection { items { __typename title description { json } image { url title } overline, cta { text url { url } } } } } } } "}`,
         method: 'POST',
       }
     );
