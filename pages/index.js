@@ -1,24 +1,16 @@
 import Head from 'next/head';
-// import '../styles/Home.module.css';
+import Header from '../src/components/Header';
 
-export default function Home() {
+export default function Home(props) {
+  console.log(props);
+  const page = props.data.pageCollection.items[0];
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>{page.title}</title>
       </Head>
       <main>
-        <header>
-          <a href="https://www.chegg.com/">
-            <img src="/logo.svg" alt="" width="80" />
-          </a>
-          <nav>
-            <a href="https://www.chegg.com/books">Books</a>
-            <a href="https://www.chegg.com/study">Study</a>
-            <a href="https://www.chegg.com/career">Career</a>
-            <a href="https://www.chegg.com/introducing-chegg-life">Life</a>
-          </nav>
-        </header>
+        <Header />
         <section className="hero bleed">
           <img
             src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_1200/site-assets/marketing/landing-pages/Cheggcom/optimized/full-hero-sohp-s.jpg"
