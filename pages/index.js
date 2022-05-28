@@ -223,13 +223,14 @@ export const getServerSideProps = async (context) => {
         slug_exists: false
       }){
       items {
+        name
         title
       }
     }
   }`.replace(/[\n ]+/g, " ");
   try {
     const data = await fetch(
-      `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`,
+      `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT_ID}`,
       {
         headers: {
           authorization: `Bearer ${process.env.CONTENTFUL_DELIVERY_API_KEY}`,
