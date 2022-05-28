@@ -256,7 +256,7 @@ export const getServerSideProps = async (context) => {
           authorization: 'Bearer FK64gTSrqOKPrlAEO9WEImebL4QobEZSSpGVzNXizw0',
           'content-type': 'application/json',
         },
-        body: `{"operationName":null,"variables":{},"query":" { pageCollection(where: { slug_exists: false, }, limit: 1){ items { title componentsCollection { items { __typename title description { json } image { url title } overline, cta { text url { url } } } } } } } "}`,
+        body: `{"operationName":null,"variables":{},"query":" { pageCollection(where: { slug_exists: false }, limit: 1) { items { title componentsCollection { items { __typename ... on ValueProp { title description { json } image { url title } overline cta { text url { url } } } ... on Heading { title seoHeadingLevel size } } } } } }"}`,
         method: 'POST',
       }
     );
