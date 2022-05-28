@@ -1,11 +1,13 @@
-import Head from 'next/head';
-// import '../styles/Home.module.css';
+import Head from "next/head";
 
-export default function Home() {
+export default function Home(props) {
+  console.log(props);
+  const pageData = props?.data?.pageCollection?.items?.[0];
+  if (!pageData) return "Page not found 404";
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>{pageData.title}</title>
       </Head>
       <main>
         <header>
@@ -211,3 +213,37 @@ export default function Home() {
     </div>
   );
 }
+
+export const getServerSideProps = async (context) => {
+  const results = {
+    props: {}
+  };
+  const gql = `{
+      pageCollection(where: {
+        slug_exists: false
+      }){
+      items {
+        title
+      }
+    }
+  }`.replace(/[\n ]+/g, " ");
+  try {
+    const data = await fetch(
+      `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`,
+      {
+        headers: {
+          authorization: `Bearer ${process.env.CONTENTFUL_DELIVERY_API_KEY}`,
+          "content-type": "application/json"
+        },
+        body: `{"operationName":null,"variables":{},"query":"${gql}"}`,
+        method: "POST"
+      }
+    );
+    results.props = await data.json();
+    console.log(results.props);
+  } catch (e) {
+    console.trace(e);
+  }
+
+  return results;
+};
