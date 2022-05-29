@@ -6,9 +6,9 @@ const filename = process.argv[indexOfMigrationNameOption + 1];
 
 const indexOfEnvironmentOption = process.argv.indexOf("-e");
 const environment =
-  process.argv[indexOfEnvironmentOption + 1] ||
-  process.env.CONTENTFUL_ENVIRONMENT_ID ||
-  "master";
+  indexOfEnvironmentOption > -1
+    ? process.argv[indexOfEnvironmentOption + 1]
+    : process.env.CONTENTFUL_ENVIRONMENT_ID || "master";
 
 if (!filename || filename === "exec")
   throw new Error("Filename not provided or invalid");
