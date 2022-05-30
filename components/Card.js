@@ -1,20 +1,18 @@
-export default function Card() {
-  return (
+export default function Card(props) {
+  const { title, description, cta, image } = props;
+  const shouldRenderCard = title || description || cta || image;
+  return shouldRenderCard ? (
     <div className="card">
-      <img
-        src="https://assets.chegg.com/image/upload/c_scale,f_auto,q_auto,w_600/site-assets/marketing/landing-pages/Study/tile-hw.png"
-        alt=""
-      />
-      <h3 className="h2">Homework help</h3>
-      <p>
-        Study with 55+ million step-by-step explanations, Expert Q&As & math
-        support.
-      </p>
-      <a className="cta" href="https://www.chegg.com/homework-help">
-        Learn more <img src="/arrow.svg" alt="" />
-      </a>
+      {image && <img src={image.url} alt={image.title} />}
+      {title && <h3 className="h2">{title}</h3>}
+      {description && <p>{description}</p>}
+      {cta && (
+        <a className="cta" href={cta.url}>
+          {cta.title} <img src="/arrow.svg" alt="" />
+        </a>
+      )}
     </div>
-  );
+  ) : null;
 }
 
 /*

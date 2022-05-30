@@ -1,5 +1,6 @@
-export default function Heading() {
-  return <h2 className="h2">Here for every moment</h2>;
+export default function Heading(props) {
+  const { title } = props;
+  return title ? <h2 className="h2">{title}</h2> : null;
 }
 
 /**
