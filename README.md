@@ -18,3 +18,4 @@
 4. Set `CONTENTFUL_SPACE_ID` to your space id which is there in Contentful URL `https://app.contentful.com/spaces/{spaceID)/suburl` when you login. eg `078yx5412bz7`.
 5. Set `CONTENTFUL_ENVIRONMENT_ID` to string `master`
 6. To create Page content model and page entry run this command `npm run migrate -- -n 1-create-page && npm run migrate -- -n 2-create-homepage`
+7. Reload your application and the page title will be read from Contentful
