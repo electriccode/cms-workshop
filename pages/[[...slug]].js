@@ -105,9 +105,8 @@ export const getServerSideProps = async (context) => {
       query.slug.constructor.name === "Array"
         ? query.slug.join("/")
         : query.slug;
-    contentfulSearchParams = `{ slug: "${slug}" }`;
+    contentfulSearchParams = `{ slug: \\\"${slug}\\\" }`;
   }
-  console.log({ query, contentfulSearchParams });
 
   const results = {
     props: {}
@@ -171,6 +170,8 @@ export const getServerSideProps = async (context) => {
       }
     }
   }`.replace(/[\n ]+/g, " ");
+  const body = `{"operationName":null,"variables":{},"query":"${gql}"}`;
+  console.log({ body });
   try {
     const data = await fetch(
       `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT_ID}`,
@@ -179,7 +180,7 @@ export const getServerSideProps = async (context) => {
           authorization: `Bearer ${process.env.CONTENTFUL_DELIVERY_API_KEY}`,
           "content-type": "application/json"
         },
-        body: `{"operationName":null,"variables":{},"query":"${gql}"}`,
+        body,
         method: "POST"
       }
     );
