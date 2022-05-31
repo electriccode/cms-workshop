@@ -2,8 +2,8 @@
 
 # Prerequisites
 
-1. Create an account at codesandbox.io.
-2. Create an account at contentful.com as well.
+1. Create an account on codesandbox.io.
+2. Create an account on contentful.com as well.
 
 # Create a static homepage
 
