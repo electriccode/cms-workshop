@@ -47,3 +47,12 @@ We'll learn how to refactor current HTML markup into React components. After tha
 5. To create rest of the content models run this command `npm run migrate -- -n 3-create-content-types`
 6. To create add remaining home page content run this command `npm run migrate -- -n 4-add-homepage-content`
 7. Reload your application and the page data will be read and painted from Contentful
+
+## 5. Bonus: Dynamic URLs
+
+1. Open this [sandbox](https://codesandbox.io/s/github/electriccode/cms-workshop/tree/4-dynamic-urls) and fork it.
+2. [Add secrets](https://codesandbox.io/docs/secrets) to your Codesandbox application. `CONTENTFUL_DELIVERY_API_KEY` and `CONTENTFUL_MANAGEMENT_API_KEY` will be set to the values you saved in step 1.
+3. Set `CONTENTFUL_SPACE_ID` to your space id which is there in Contentful URL `https://app.contentful.com/spaces/{spaceID)/suburl` when you login. eg `078yx5412bz7`.
+4. Set `CONTENTFUL_ENVIRONMENT_ID` to string `master`
+5. Go to contentful and create some new pages. Set the slug to a random URL.
+6. Access the application with new slug, the page will load
