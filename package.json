@@ -11,6 +11,7 @@
     "reset-content": "node ./node_modules/.bin/contentful-clean-space --space-id $CONTENTFUL_SPACE_ID --env $CONTENTFUL_ENVIRONMENT_ID --accesstoken $CONTENTFUL_MANAGEMENT_API_KEY --assets=true --yes=true"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "15.12.1",
     "contentful-clean-space": "0.9.0",
     "contentful-management": "10.6.0",
     "contentful-migration": "4.9.0",

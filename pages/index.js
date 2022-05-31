@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Heading from "../components/Heading";
 import Hero from "../components/Hero";
 import Row from "../components/Row";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 export default function Home(props) {
   console.log(props);
@@ -27,7 +28,7 @@ export default function Home(props) {
                 const { title, description, overline, cta, image } = item;
                 const heroProps = {
                   title,
-                  description: JSON.stringify(description),
+                  description: documentToReactComponents(description.json),
                   overline
                 };
                 if (cta) {
@@ -49,35 +50,49 @@ export default function Home(props) {
                 }
                 Component = Hero;
                 props = heroProps;
-              } else if (item.type === "Card") {
               }
+              break;
+            case "Heading":
+              props = {
+                title: item.title
+              };
+              Component = Heading;
+              break;
+            case "Section":
+              props = {
+                children: item.componentsCollection.items.map((item) => {
+                  const { title, description, cta, image } = item;
+                  const cardProps = {
+                    title,
+                    description: documentToReactComponents(description.json)
+                  };
+                  if (cta) {
+                    const {
+                      text,
+                      url: { url: ctaUrl }
+                    } = cta;
+                    cardProps.cta = {
+                      title: text,
+                      url: ctaUrl
+                    };
+                  }
+                  if (image) {
+                    const { title: imageTitle, url: imageUrl } = image;
+                    cardProps.image = {
+                      title: imageTitle,
+                      url: imageUrl
+                    };
+                  }
+                  return <Card {...cardProps} />;
+                })
+              };
+              Component = Row;
               break;
             default:
               void 0;
           }
           return Component && <Component {...props} />;
         })}
-        <Hero />
-        <Heading />
-        <Row>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </Row>
-        <Hero />
-        <Heading />
-        <Hero />
-        <Hero />
-        <Row>
-          <Card />
-          <Card />
-          <Card />
-        </Row>
-        <Row>
-          <Card />
-          <Card />
-        </Row>
       </main>
       <Footer />
     </div>
@@ -130,7 +145,7 @@ export const getServerSideProps = async (context) => {
                     }
                     image {
                       title
-                      fileName
+                      url
                     }
                     cta {
                       text
