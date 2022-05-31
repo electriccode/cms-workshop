@@ -17,6 +17,46 @@ export default function Home(props) {
       </Head>
       <main>
         <Header />
+        {pageData.componentsCollection.items.map((item) => {
+          let Component = null;
+          let props = {};
+          console.log(item.__typename, item.type);
+          switch (item.__typename) {
+            case "ValueProp":
+              if (item.type === "Hero") {
+                const { title, description, overline, cta, image } = item;
+                const heroProps = {
+                  title,
+                  description: JSON.stringify(description),
+                  overline
+                };
+                if (cta) {
+                  const {
+                    text,
+                    url: { url: ctaUrl }
+                  } = cta;
+                  heroProps.cta = {
+                    title: text,
+                    url: ctaUrl
+                  };
+                }
+                if (image) {
+                  const { title: imageTitle, url: imageUrl } = image;
+                  heroProps.image = {
+                    title: imageTitle,
+                    url: imageUrl
+                  };
+                }
+                Component = Hero;
+                props = heroProps;
+              } else if (item.type === "Card") {
+              }
+              break;
+            default:
+              void 0;
+          }
+          return Component && <Component {...props} />;
+        })}
         <Hero />
         <Heading />
         <Row>
@@ -49,12 +89,61 @@ export const getServerSideProps = async (context) => {
     props: {}
   };
   const gql = `{
-      pageCollection(where: {
-        slug_exists: false
-      }){
+    pageCollection(where: { slug_exists: false }, limit: 1) {
       items {
-        name
         title
+        componentsCollection(limit: 50) {
+          items {
+            __typename
+            ... on ValueProp {
+              type
+              title
+              description {
+                json
+              }
+              image {
+                url
+                title
+              }
+              overline
+              cta {
+                text
+                url {
+                  url
+                }
+              }
+            }
+            ... on Heading {
+              title
+              seoHeadingLevel
+              size
+            }
+            ... on Section {
+              componentsCollection(limit: 6) {
+                items {
+                  __typename,
+                  ... on ValueProp {
+                    type
+                    title
+                    description {
+                      json
+                    }
+                    image {
+                      title
+                      fileName
+                    }
+                    cta {
+                      text
+                      url {
+                        url
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }`.replace(/[\n ]+/g, " ");
