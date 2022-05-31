@@ -99,15 +99,13 @@ export default function Home(props) {
 
 export const getServerSideProps = async (context) => {
   const { query } = context;
-  let contentfulSearchParams = { slug_exists: false };
+  let contentfulSearchParams = "{ slug_exists: false }";
   if (query.slug) {
     const slug =
       query.slug.constructor.name === "Array"
         ? query.slug.join("/")
         : query.slug;
-    contentfulSearchParams = {
-      slug
-    };
+    contentfulSearchParams = `{ slug: "${slug}" }`;
   }
   console.log({ query, contentfulSearchParams });
 
@@ -115,7 +113,7 @@ export const getServerSideProps = async (context) => {
     props: {}
   };
   const gql = `{
-    pageCollection(where: ${JSON.stringify(contentfulSearchParams)}, limit: 1) {
+    pageCollection(where: ${contentfulSearchParams}, limit: 1) {
       items {
         title
         componentsCollection(limit: 50) {
