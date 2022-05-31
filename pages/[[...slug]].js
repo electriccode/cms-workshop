@@ -8,7 +8,6 @@ import Row from "../components/Row";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 export default function Home(props) {
-  console.log(props);
   const pageData = props?.data?.pageCollection?.items?.[0];
   if (!pageData) return "Page not found 404";
   return (
@@ -21,7 +20,6 @@ export default function Home(props) {
         {pageData.componentsCollection.items.map((item) => {
           let Component = null;
           let props = {};
-          console.log(item.__typename, item.type);
           switch (item.__typename) {
             case "ValueProp":
               if (item.type === "Hero") {
@@ -100,11 +98,24 @@ export default function Home(props) {
 }
 
 export const getServerSideProps = async (context) => {
+  const { query } = context;
+  let contentfulSearchParams = { slug_exists: false };
+  if (query.slug) {
+    const slug =
+      query.slug.constructor.name === "Array"
+        ? query.slug.join("/")
+        : query.slug;
+    contentfulSearchParams = {
+      slug
+    };
+  }
+  console.log({ query, contentfulSearchParams });
+
   const results = {
     props: {}
   };
   const gql = `{
-    pageCollection(where: { slug_exists: false }, limit: 1) {
+    pageCollection(where: ${JSON.stringify(contentfulSearchParams)}, limit: 1) {
       items {
         title
         componentsCollection(limit: 50) {
@@ -175,7 +186,7 @@ export const getServerSideProps = async (context) => {
       }
     );
     results.props = await data.json();
-    console.log(results.props);
+    console.log("Contentful data", results.props);
   } catch (e) {
     console.trace(e);
   }
